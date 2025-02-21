@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -13,7 +12,8 @@ import {
   Users,
   Calendar,
   CheckCircle,
-  ChevronRight
+  ChevronRight,
+  Store
 } from "lucide-react";
 import {
   Accordion,
@@ -51,6 +51,11 @@ const services = [
     icon: MessageSquare,
     title: "Social Media",
     description: "Strategic social media management and growth",
+  },
+  {
+    icon: Store,
+    title: "Online Store",
+    description: "Custom e-commerce solutions to help your business sell online",
   },
 ];
 
@@ -121,22 +126,22 @@ const Index = () => {
     <div className="min-h-screen bg-white">
       <Navbar />
       
-      {/* Hero Section */}
-      <section className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-brand-light via-white to-brand-light">
+      {/* Hero Section - Enhanced with gradient */}
+      <section className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-brand-purple/10 via-white to-brand-light">
         <div className="absolute inset-0 bg-grid-pattern opacity-5" />
         <div className="container mx-auto px-4 py-32 relative">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-7xl font-bold text-brand-dark animate-fade-up leading-tight">
+            <h1 className="text-4xl md:text-7xl font-bold text-gradient leading-tight animate-fade-up">
               Your Digital Growth Partner
             </h1>
-            <p className="mt-6 text-xl text-gray-600 max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: "0.2s" }}>
+            <p className="mt-6 text-xl text-gray-600 max-w-2xl mx-auto animate-fade-up opacity-90" style={{ animationDelay: "0.2s" }}>
               We help startups and organizations establish their digital presence with comprehensive web, software, and marketing solutions.
             </p>
             <div className="mt-10 flex justify-center gap-4 animate-fade-up" style={{ animationDelay: "0.4s" }}>
-              <Button asChild size="lg">
+              <Button asChild size="lg" className="bg-brand-purple hover:bg-brand-purple/90">
                 <Link to="/contact">Get Free Consultation</Link>
               </Button>
-              <Button variant="outline" size="lg" asChild>
+              <Button variant="outline" size="lg" asChild className="border-brand-purple text-brand-purple hover:bg-brand-purple/10">
                 <Link to="/portfolio">View Our Work</Link>
               </Button>
             </div>
@@ -144,20 +149,20 @@ const Index = () => {
         </div>
       </section>
 
-      {/* About Section with Stats */}
-      <section className="py-20 bg-white">
+      {/* About Section - Enhanced with gradients and hover effects */}
+      <section className="py-20 bg-gradient-to-br from-white via-brand-light to-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-3xl font-bold mb-6">About LynixDevs</h2>
+            <h2 className="text-3xl font-bold mb-6 text-gradient">About LynixDevs</h2>
             <p className="text-lg text-gray-600">
               We're a team of passionate digital creators, developers, and marketers dedicated to helping businesses thrive in the digital age. With our comprehensive approach, we turn your digital vision into reality.
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <div key={stat.label} className="text-center animate-fade-up" style={{ animationDelay: `${0.2 * index}s` }}>
+              <div key={stat.label} className="text-center animate-fade-up hover-scale p-6 rounded-lg glass-card" style={{ animationDelay: `${0.2 * index}s` }}>
                 <stat.icon className="w-8 h-8 mx-auto mb-4 text-brand-purple" />
-                <h3 className="text-3xl font-bold text-brand-dark">{stat.number}</h3>
+                <h3 className="text-3xl font-bold text-brand-purple">{stat.number}</h3>
                 <p className="text-gray-600">{stat.label}</p>
               </div>
             ))}
@@ -165,17 +170,17 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-20 bg-brand-light">
+      {/* Services Section - Enhanced with glass effect */}
+      <section className="py-20 bg-gradient-to-br from-brand-light via-white to-brand-light relative overflow-hidden">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-16">Our Services</h2>
+          <h2 className="text-3xl font-bold text-center mb-16 text-gradient">Our Services</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <Card key={service.title} className="group p-6 backdrop-blur-sm bg-white/50 hover:shadow-lg transition-all duration-300 animate-fade-up" style={{ animationDelay: `${0.2 * index}s` }}>
+              <Card key={service.title} className="group p-6 glass-card hover:shadow-lg transition-all duration-300 animate-fade-up hover-scale" style={{ animationDelay: `${0.2 * index}s` }}>
                 <service.icon className="h-12 w-12 text-brand-purple mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
                 <p className="text-gray-600 mb-4">{service.description}</p>
-                <Button variant="ghost" className="group-hover:translate-x-2 transition-transform">
+                <Button variant="ghost" className="group-hover:translate-x-2 transition-transform text-brand-purple hover:text-brand-purple/90">
                   Learn More <ChevronRight className="ml-2 h-4 w-4" />
                 </Button>
               </Card>
