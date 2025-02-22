@@ -1,9 +1,35 @@
 
-import { initializeApp } from 'firebase/app';
+import { initializeApp, getApps } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
-const firebaseConfig = {
+const FIREBASE_CONFIG_KEY = 'firebase_config';
+
+export const initializeFirebase = (config: {
+  apiKey: string;
+  authDomain: string;
+  projectId: string;
+  storageBucket: string;
+  messagingSenderId: string;
+  appId: string;
+}) => {
+  // Store the config in localStorage
+  localStorage.setItem(FIREBASE_CONFIG_KEY, JSON.stringify(config));
+  
+  // Initialize Firebase if not already initialized
+  if (!getApps().length) {
+    const app = initializeApp(config);
+    return {
+      db: getFirestore(app),
+      storage: getStorage(app)
+    };
+  }
+  return null;
+};
+
+// Try to get existing config
+const savedConfig = localStorage.getItem(FIREBASE_CONFIG_KEY);
+const firebaseConfig = savedConfig ? JSON.parse(savedConfig) : {
   apiKey: "",
   authDomain: "",
   projectId: "",
