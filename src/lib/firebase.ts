@@ -2,6 +2,7 @@
 import { initializeApp, getApps } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
+import { getAuth, signInWithEmailAndPassword, signOut, User } from 'firebase/auth';
 
 const FIREBASE_CONFIG_KEY = 'firebase_config';
 
@@ -21,7 +22,8 @@ export const initializeFirebase = (config: {
     const app = initializeApp(config);
     return {
       db: getFirestore(app),
-      storage: getStorage(app)
+      storage: getStorage(app),
+      auth: getAuth(app)
     };
   }
   return null;
@@ -41,3 +43,22 @@ const firebaseConfig = savedConfig ? JSON.parse(savedConfig) : {
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
+export const auth = getAuth(app);
+
+// Authentication functions
+export const loginWithEmail = async (email: string, password: string) => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    return userCredential.user;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const logoutUser = async () => {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    throw error;
+  }
+};
